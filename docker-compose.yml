@@ -1,12 +1,12 @@
-version: "3.8"
-
 services:
   mongodb:
     image: mongo:6.0.26
     container_name: mongobleed
     ports:
       - "27017:27017"
-    command: ["mongod", "--networkMessageCompressors", "zlib", "--bind_ip_all"]
+    command: [ "mongod", "--networkMessageCompressors", "zlib", "--bind_ip_all" ]
+    volumes:
+      - mongodb_data:/data/db
     restart: always
 
 volumes:
