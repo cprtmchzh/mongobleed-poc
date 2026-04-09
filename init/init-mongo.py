@@ -24,7 +24,7 @@ userData = [
         "password": f"$2b$10$dummyhash_{i}",
         "role": "user"
     }
-    for i in range(50)
+    for i in range(500)
 ]
 
 # 접속 유저 token 데이터 생성
@@ -38,7 +38,7 @@ token = [
         "username": f"user_{i}",
         "token": f"jwtToken_xxxxxxxxxxx_{i}"
     }
-    for i in range(10)
+    for i in range(100)
 ]
 
 # apiKey 데이터 생성
@@ -48,7 +48,7 @@ apiKeyData = [
         "apiKey": f"apiKey_{i}",
         "secretKey": f"secretKey_{i}"
     }
-    for i in range(5)
+    for i in range(50)
 ]
 
 # 파일 실행 시마다 기존 데이터 삭제 후 새로 삽입
@@ -60,18 +60,18 @@ print("\n- Cleared existing data in MongoDB.\n")
 # userInfo 테이블에 유저 데이터 삽입
 userInfo.insert_one(adminData)
 userInfo.insert_many(userData)
-print("- Inserted 50 userInfo into MongoDB.")
+print("- Inserted 500 userInfo into MongoDB.")
 
 # token 테이블에 token 데이터 삽입
 userToken.insert_many(token)
-print("- Inserted 10 token into MongoDB.")
+print("- Inserted 100 token into MongoDB.")
 
 # apiKey 테이블에 apiKey 데이터 삽입
 apiKey.insert_many(apiKeyData)
-print("- Inserted 5 apiKey into MongoDB.\n")
+print("- Inserted 50 apiKey into MongoDB.\n")
 
 # 메모리에 데이터가 남도록 반복적으로 조회 수행 (메모리 누출 시 더 많은 데이터가 노출될 가능성)
-for i in range(100):
+for i in range(1000):
     list(db["userInfo"].find({}))
     list(db["token"].find({}))
     list(db["apiKey"].find({}))
